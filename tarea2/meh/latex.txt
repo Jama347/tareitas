@@ -1,0 +1,140 @@
+%Se declara el tipo de documento; podemos indicar el tamaño de la letra, tamaño del papel, etc.
+\documentclass[10pt,a4paper]{article}
+ %Soporte para UTF-8
+\usepackage[utf8]{inputenc}
+ %Se agrega el idioma y los paquetes que extienden la funcionalidad de LaTeX.
+\usepackage[spanish, es-noshorthands]{babel}
+%Distintos símbolos matemáticos.
+\usepackage{amsmath,amsfonts,amssymb}
+%Utilizado para insertar imágenes.
+\usepackage{graphicx}
+  %Paquete para crear hipervínculos.
+\usepackage[colorlinks, urlcolor=blue]{hyperref}
+%Paquete para generar formas.
+\usepackage{tikz}
+ %Insertar código coloreado en distintos lenguajes.
+\usetikzlibrary{arrows,petri,topaths,shapes,automata}
+\usepackage{tkz-berge}
+\usepackage{minted}
+ %Indicamos los margenes de nuestro documento.
+\usepackage[left=2.00cm, right=2.00cm, top=2cm, bottom=2.00cm]{geometry}
+\usepackage{enumitem} %permite la enumeracion con numeros romanos minusculos
+\usetikzlibrary{arrows.meta , positioning}
+
+\title{\huge Actividad Opcional NUMERO 2 \\ INF-152} %Titulo que se vera en la parte superior.
+\author{Joaquín Muñoz, Diego Graells, Constanza Bravo \\ 202473011-8 ; 202473072-K ; 202473032-0} 
+%autores
+\date{09/05/2025} %Fecha.
+
+\begin{document}
+
+\maketitle
+\begin{itemize}
+\item \section* {Pregunta 1} 
+    \renewcommand{\theenumi}{\alph{enumi}}
+
+    \begin{enumerate} 
+        \item\hspace{1em}
+
+        \begin{tikzpicture}[node distance=1.3cm]
+
+            \node[circle ,draw=black,inner sep=2pt,minimum size=1pt,thick]  at (0,-3) (1) {\(C\)};
+            \node[circle,draw=black,inner sep=2pt,minimum size=1pt,thick] [below of=1] at (0, -0.5) (2) {\(A\)};
+            \node[circle,draw=black,inner sep=2pt,minimum size=1pt,thick] [right of=2] at (0,-1.8) (3) {\(B\)};
+            \node[circle,draw=black,inner sep=2pt,minimum size=1pt,thick] [right of=1] at (0,-3) (4) {\(D\)};
+
+            \draw (1) -- (2);
+            \draw (1) -- (4);
+            \draw (2) -- (3);
+            \draw (3) -- (4);
+
+        \end{tikzpicture}
+        \hspace{5mm}
+        \begin{tabular}{|c|l r|}
+        \hline %Lineas horizontales.
+        A & B & D \\ %El & indica la separación.
+        B & C & A \\
+        C & B & D\\
+        D & A & C\\
+        \hline
+        \end{tabular} 
+        \hspace{5mm}
+        \begin{tabular}{|c|lll r|}
+        \hline %Lineas horizontales.
+          & A & B & C & D \\ %El & indica la separación.
+        \hline
+        A & 0 & 1 & 0 & 1\\
+        B & 1 & 0 & 1 & 0\\
+        C & 0 & 1 & 0 & 1\\
+        D & 1 & 0 & 1 & 0\\
+        \hline
+        \end{tabular}
+        
+
+        \hfill
+        
+        \item En el caso del planeta "A" constamos con 2 ciclos de Hamilton siguiendo el camino hacia "B" (horario) o el camino en direction. a "D" (antihorario).
+        
+    \end{enumerate}
+    
+\item \section* {Pregunta 2} 
+    \renewcommand{\theenumi}{\alph{enumi}}
+    
+    \begin{enumerate} 
+        \item Lo quieren que hacer Goku y Vegeta (juntos) es un camino Hamiltoniano, que por teorema es posible si solo si unicamente 2 vertices tienen grado impar, lo cual efectivamente se comple en los planetas "N" y "T".
+        \item 
+        \hspace{1em}
+
+       
+            \begin{tikzpicture}[
+    > = Stealth,
+    shorten > = 1pt,
+    auto,
+    node distance = 2cm,
+    thick,
+    main node/.style = {circle, draw, fill=yellow!30, minimum size=0.7cm, font=\bfseries},
+    label node/.style = {circle, draw, fill=white, minimum size=0.6cm, inner sep=0pt, font=\scriptsize}
+]
+
+% Nodes (vértices)
+\node[main node] (N) at (0,2) {N};
+\node[main node] (K) at (7,2) {K};
+\node[main node] (S) at (4,0) {S};
+\node[main node] (T) at (1,1) {T};
+\node[main node] (Y) at (7,-2) {Y};
+\node[main node] (V) at (0,-2) {V};
+
+% Edges (aristas) con etiquetas
+\draw[->] (N) to[out=30, in=150] node[label node, midway, left] {$1$} (K);
+\draw[->] (N) to[out=0, in=180] node[label node, midway, right] {$9$} (K);
+\draw[->] (K) to[out=270, in=90] node[label node, midway, above] {$2$} (Y);
+\draw[->] (K) to[out=230, in=90] node[label node, midway, left] {$10$} (S);
+\draw[->] (Y) to[out=125, in=0] node[label node, midway, left] {$6$} (S);
+\draw[->] (Y) to[out=180, in=0] node[label node, midway, right] {$3$} (V);
+\draw[->] (V) to[out=90, in=270] node[label node, midway, above] {$8$} (N);
+\draw[->] (V) to[out=45, in=270] node[label node, midway, above] {$4$} (T);
+\draw[->] (S) to[out=180, in=0] node[label node, midway, above] {$11$} (T);
+\draw[->] (S) to[out=200, in=20] node[label node, midway, left] {$7$} (V);
+\draw[->] (T) to[out=330, in=170] node[label node, midway, left] {$5$} (Y);
+
+\end{tikzpicture}
+
+        
+            
+        \end{enumerate}
+    
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+\newpage %Salto de página
+
+
+\end{document}
