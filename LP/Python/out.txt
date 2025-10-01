@@ -1,0 +1,11 @@
+
+## =========== RESULTADOS ========= ##
+del 1 al 5, inválidas
+E<n>	p.esperado/tipo rima/puntaje
+E6	2.6/10	consonante	2	puede dar 2.2, es inválido pero tiene que ver con un error en "sin rima" por lo que se deja pasar y se descuenta en sin rima más adelante
+		
+E7	2.6/10	consonante	3	puede dar 2.2, es inválido pero tiene que ver con un error en "sin rima" por lo que se deja pasar y se descuenta en sin rima más adelante
+		
+E8	9.6/10	consonante	2	puede decir asonante dependiendo la implementación
+		
+E9	6.0/10	consonante	3			
